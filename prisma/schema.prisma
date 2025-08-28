@@ -1,0 +1,50 @@
+// Prisma schema for WinMix - baseline reflecting existing Supabase schema
+// This is a baseline; future schema changes must go through Prisma Migrate.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MatchStatus {
+  scheduled
+  live
+  completed
+  postponed
+  cancelled
+}
+
+model Match {
+  id                       BigInt     @id @default(autoincrement())
+  match_time               String
+  home_team                String
+  away_team                String
+  half_time_home_goals     Int?
+  half_time_away_goals     Int?
+  full_time_home_goals     Int
+  full_time_away_goals     Int
+  league                   String      @default("Unknown League")
+  season                   String?     @default("Unknown Season")
+  attendance               Int?
+  venue                    String?     @default("Unknown Venue")
+  referee                  String?
+  home_corners             Int?
+  away_corners             Int?
+  home_shots               Int?
+  away_shots               Int?
+  home_shots_on_target     Int?
+  away_shots_on_target     Int?
+  home_yellow_cards        Int?
+  away_yellow_cards        Int?
+  home_red_cards           Int?
+  away_red_cards           Int?
+  match_status             MatchStatus? @default(completed)
+  created_at               DateTime?    @default(now()) @db.Timestamptz(6)
+  updated_at               DateTime?    @default(now()) @db.Timestamptz(6)
+
+  @@map("matches")
+}
