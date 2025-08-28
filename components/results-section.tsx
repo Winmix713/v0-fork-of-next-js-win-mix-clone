@@ -56,7 +56,7 @@ export function ResultsSection({
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = Math.min(startIndex + itemsPerPage, totalCount)
-  const displayedMatches = matches.slice(0, itemsPerPage) // Show current page matches
+  const displayedMatches = matches.slice(startIndex, endIndex)
   const totalPages = Math.ceil(totalCount / itemsPerPage)
   const showPagination = totalCount > 0
 
