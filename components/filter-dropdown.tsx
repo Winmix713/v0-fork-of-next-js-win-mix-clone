@@ -47,7 +47,7 @@ export function FilterDropdown({ label, icon, iconBg, options, value, onChange }
 
   return (
     <div className="relative" ref={dropdownRef} data-dropdown={icon}>
-      <label className="block text-xs text-zinc-400 mb-1.5">{label}</label>
+      <label className="block text-xs text-zinc-300 mb-1.5">{label}</label>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -55,7 +55,7 @@ export function FilterDropdown({ label, icon, iconBg, options, value, onChange }
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         data-trigger=""
-        className="w-full flex items-center justify-between rounded-xl bg-white/5 ring-1 ring-white/10 px-3 py-2.5 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all duration-200"
+        className="w-full flex items-center justify-between rounded-xl bg-slate-800/80 ring-1 ring-slate-600/50 px-3 py-2.5 hover:bg-slate-700/80 focus:outline-none focus:ring-2 focus:ring-violet-500/50 transition-all duration-200"
       >
         <div className="flex items-center gap-2 truncate">
           <span
@@ -67,22 +67,22 @@ export function FilterDropdown({ label, icon, iconBg, options, value, onChange }
               style={{ width: "16px", height: "16px", strokeWidth: "1.5" }}
             ></i>
           </span>
-          <span className="text-sm text-zinc-200 font-medium truncate" data-label="">
+          <span className="text-sm text-white font-medium truncate" data-label="">
             {selectedOption.label}
           </span>
         </div>
         <i
           data-lucide="chevron-down"
-          className={`text-zinc-300 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`text-white transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
           style={{ width: "18px", height: "18px", strokeWidth: "1.5" }}
         ></i>
       </button>
       {isOpen && (
         <div
           data-menu=""
-          className="absolute z-50 mt-2 w-full rounded-xl ring-1 ring-white/10 bg-[#0c0f16] shadow-2xl overflow-hidden"
+          className="absolute z-50 mt-2 w-full rounded-xl ring-1 ring-slate-600/50 bg-slate-900/95 backdrop-blur-sm shadow-2xl overflow-hidden"
         >
-          <div className="max-h-60 overflow-y-auto divide-y divide-white/5" role="listbox" data-options="">
+          <div className="max-h-60 overflow-y-auto divide-y divide-slate-700/50" role="listbox" data-options="">
             {options.map((option) => (
               <button
                 key={option.value}
@@ -92,8 +92,8 @@ export function FilterDropdown({ label, icon, iconBg, options, value, onChange }
                 }}
                 role="option"
                 aria-selected={option.value === value}
-                className={`w-full px-4 py-3 text-left text-sm hover:bg-white/5 flex items-center gap-3 transition-colors duration-150 dropdown-option ${
-                  option.value === value ? "text-violet-300 bg-white/5" : "text-zinc-200"
+                className={`w-full px-4 py-3 text-left text-sm hover:bg-slate-700/50 flex items-center gap-3 transition-colors duration-150 dropdown-option ${
+                  option.value === value ? "text-violet-300 bg-slate-700/30" : "text-white"
                 }`}
               >
                 {option.label}

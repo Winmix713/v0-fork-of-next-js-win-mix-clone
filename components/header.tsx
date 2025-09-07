@@ -2,11 +2,14 @@
 
 import { useEffect, useState } from "react"
 import { Trophy, Bell, User, ChevronDown } from "lucide-react"
-import { useAppStore } from "@/lib/store"
 import { cn } from "@/lib/utils"
 
 const Header = () => {
-  const userStats = useAppStore((state) => state.userStats)
+  const userStats = {
+    points: 1250,
+    winRate: 73,
+  }
+
   const [scrolled, setScrolled] = useState(false)
   const [animationComplete, setAnimationComplete] = useState(false)
 
@@ -61,12 +64,12 @@ const Header = () => {
               animationComplete ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4",
             )}
           >
-            <div className="px-3 py-1.5 rounded-md bg-muted/50 hover:bg-muted/80 transition-colors duration-200 flex items-center gap-2">
+            <div className="px-3 py-1.5 rounded-md bg-slate-800/90 border border-slate-600/50 hover:bg-slate-700/90 transition-colors duration-200 flex items-center gap-2">
               <Trophy className="h-4 w-4 text-blue-400" />
               <span className="text-xs font-medium text-white">{userStats.points} Points</span>
             </div>
 
-            <div className="px-3 py-1.5 rounded-md bg-muted/50 hover:bg-muted/80 transition-colors duration-200">
+            <div className="px-3 py-1.5 rounded-md bg-slate-800/90 border border-slate-600/50 hover:bg-slate-700/90 transition-colors duration-200">
               <span className="text-xs font-medium text-white">{userStats.winRate}% Win Rate</span>
             </div>
           </div>
@@ -77,12 +80,12 @@ const Header = () => {
               animationComplete ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4",
             )}
           >
-            <button className="relative p-2 rounded-full bg-muted/50 hover:bg-muted/80 transition-colors duration-200">
+            <button className="relative p-2 rounded-full bg-slate-800/90 border border-slate-600/50 hover:bg-slate-700/90 transition-colors duration-200">
               <Bell className="h-4 w-4 text-white" />
               <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-blue-500"></span>
             </button>
 
-            <button className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-muted/50 hover:bg-muted/80 transition-colors duration-200">
+            <button className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-slate-800/90 border border-slate-600/50 hover:bg-slate-700/90 transition-colors duration-200">
               <div className="h-5 w-5 rounded-full bg-blue-600 flex items-center justify-center">
                 <User className="h-3 w-3 text-white" />
               </div>
@@ -96,4 +99,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export { Header }
