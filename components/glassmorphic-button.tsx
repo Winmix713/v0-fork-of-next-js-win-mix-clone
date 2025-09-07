@@ -19,8 +19,8 @@ export function GlassmorphicButton({
       className={cn(
         // Base glassmorphic styling from the provided CSS
         "relative inline-flex items-center justify-center gap-2",
-        "px-16 py-4 rounded-full",
-        "font-medium text-white text-lg",
+        "w-[130px] h-[40px] rounded-full",
+        "font-medium text-white text-sm",
         // Complex glassmorphic background and shadows
         "bg-gradient-to-b from-gray-400/20 via-gray-500/30 to-gray-600/20",
         "backdrop-blur-sm",
@@ -39,7 +39,7 @@ export function GlassmorphicButton({
       )}
       {...props}
     >
-      {icon && <i data-lucide={icon} style={{ width: "20px", height: "20px", strokeWidth: "1.5" }} />}
+      {icon && <i data-lucide={icon} style={{ width: "16px", height: "16px", strokeWidth: "1.5" }} />}
       <span className="relative z-10 font-medium tracking-wide">{children}</span>
     </button>
   )
