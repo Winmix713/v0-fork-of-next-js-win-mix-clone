@@ -271,7 +271,7 @@ export default function HomePage() {
 
       <main className="relative z-10">
         <section className="bg-black/20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 items-stretch bg-black">
             <div className="text-center space-y-3">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white text-balance">
                 Mérkőzés szűrő és statisztikák

@@ -34,7 +34,7 @@ export function StatsSection({ stats, matches, onExtendedStats }: StatsSectionPr
   }
 
   return (
-    <section id="stats" className="mt-10">
+    <section id="stats" className="mt-10 bg-black">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white">Statisztikák</h2>
         <div className="flex items-center gap-2">
@@ -53,7 +53,7 @@ export function StatsSection({ stats, matches, onExtendedStats }: StatsSectionPr
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 stats-grid">
-        <div className="rounded-2xl ring-1 ring-white/10 bg-white/5 px-4 py-4 stats-card">
+        <div className="rounded-2xl ring-1 ring-white/10 px-4 py-4 stats-card bg-black">
           <div className="flex items-center justify-between">
             <span className="text-xs text-zinc-400">Összes mérkőzés</span>
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10">

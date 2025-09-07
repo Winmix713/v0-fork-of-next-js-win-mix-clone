@@ -87,7 +87,7 @@ export function FilterSection({
 
   return (
     <div className="mt-8 bg-white/8 backdrop-blur-xl border border-white/15 rounded-3xl shadow-2xl">
-      <div className="px-6 py-5 border-b border-white/8 flex items-center justify-between">
+      <div className="px-6 py-5 border-b border-white/8 flex items-center justify-between bg-black">
         <div className="flex items-center gap-3">
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-2 border border-white/20">
             <i
@@ -128,7 +128,7 @@ export function FilterSection({
         </div>
       </div>
 
-      <div className="px-6 py-6 space-y-8">
+      <div className="px-6 py-6 space-y-8 bg-black">
         <SearchInput
           value={filters.searchTerm}
           onChange={(value) => updateFilter("searchTerm", value)}
