@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { FilterDropdown } from "./filter-dropdown"
 import { SearchInput } from "./search-input"
 import { useToast } from "./toast-container"
+import { GlassmorphicButton } from "./glassmorphic-button"
 
 interface FilterSectionProps {
   filters: {
@@ -107,20 +108,12 @@ export function FilterSection({
               Szűrés
             </button>
           )}
-          <button
-            onClick={handleReset}
-            className="inline-flex items-center gap-2 text-sm font-medium text-zinc-200 border border-white/10 rounded-full px-4 py-2.5 hover:bg-white/5 transition-colors duration-200"
-          >
-            <i data-lucide="rotate-ccw" style={{ width: "18px", height: "18px", strokeWidth: "1.5" }}></i>
+          <GlassmorphicButton onClick={handleReset} icon="rotate-ccw">
             Visszaállítás
-          </button>
-          <button
-            onClick={handleExport}
-            className="inline-flex items-center gap-2 text-sm font-medium text-zinc-200 border border-white/10 rounded-full px-4 py-2.5 hover:bg-white/5 transition-colors duration-200"
-          >
-            <i data-lucide="download" style={{ width: "18px", height: "18px", strokeWidth: "1.5" }}></i>
+          </GlassmorphicButton>
+          <GlassmorphicButton onClick={handleExport} icon="download" variant="export">
             CSV Export
-          </button>
+          </GlassmorphicButton>
         </div>
       </div>
       <div className="px-4 sm:px-6 py-5 space-y-6">
@@ -180,20 +173,12 @@ export function FilterSection({
               Szűrés
             </button>
           )}
-          <button
-            onClick={handleReset}
-            className="inline-flex items-center gap-2 text-sm font-medium text-zinc-200 border border-white/10 rounded-full px-4 py-2.5 hover:bg-white/5 transition-colors duration-200"
-          >
-            <i data-lucide="rotate-ccw" style={{ width: "18px", height: "18px", strokeWidth: "1.5" }}></i>
+          <GlassmorphicButton onClick={handleReset} icon="rotate-ccw" className="text-sm px-8 py-3">
             Visszaállítás
-          </button>
-          <button
-            onClick={handleExport}
-            className="inline-flex items-center gap-2 text-sm font-medium text-zinc-200 border border-white/10 rounded-full px-4 py-2.5 hover:bg-white/5 transition-colors duration-200"
-          >
-            <i data-lucide="download" style={{ width: "18px", height: "18px", strokeWidth: "1.5" }}></i>
+          </GlassmorphicButton>
+          <GlassmorphicButton onClick={handleExport} icon="download" variant="export" className="text-sm px-8 py-3">
             CSV Export
-          </button>
+          </GlassmorphicButton>
         </div>
       </div>
     </div>
