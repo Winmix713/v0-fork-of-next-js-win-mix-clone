@@ -1,87 +1,99 @@
 "use client"
 
-import { useEffect } from "react"
-import Link from "next/link"
+import { useEffect, useState } from "react"
+import { Trophy, Bell, User, ChevronDown } from "lucide-react"
+import { useAppStore } from "@/lib/store"
+import { cn } from "@/lib/utils"
 
-interface HeaderProps {
-  onSearch?: () => void
-  onExtendedStats?: () => void
-}
+const Header = () => {
+  const userStats = useAppStore((state) => state.userStats)
+  const [scrolled, setScrolled] = useState(false)
+  const [animationComplete, setAnimationComplete] = useState(false)
 
-export function Header({ onSearch, onExtendedStats }: HeaderProps) {
   useEffect(() => {
-    if (typeof window !== "undefined" && window.lucide) {
-      window.lucide.createIcons()
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled)
+      }
     }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [scrolled])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationComplete(true)
+    }, 1000)
+
+    return () => clearTimeout(timer)
   }, [])
 
   return (
-    <header className="fixed top-4 left-4 right-4 z-50 bg-white/8 backdrop-blur-xl border border-white/15 rounded-3xl shadow-2xl">
-      <div className="container-lg max-w-7xl mx-auto px-6">
-        <div className="flex h-14 items-center justify-between">
-          <Link
-            href="/"
-            className="logo-with-name header-logo flex items-center gap-3 transform hover:scale-105 transition-transform duration-300"
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b backdrop-blur-lg",
+        scrolled ? "bg-background/70 border-white/10 py-3" : "bg-transparent border-transparent py-5",
+      )}
+    >
+      <div className="container mx-auto px-4 flex items-center justify-between">
+        <div
+          className={cn(
+            "flex items-center transition-all duration-500",
+            animationComplete ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4",
+          )}
+        >
+          <div className="mr-2 h-8 w-8 overflow-hidden rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 p-0.5">
+            <div className="h-full w-full rounded-md bg-background flex items-center justify-center">
+              <Trophy className="h-4 w-4 text-blue-400" />
+            </div>
+          </div>
+          <h1 className="text-lg font-semibold tracking-tight text-white">
+            Win<span className="text-blue-400">Mix.hu</span>
+          </h1>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <div
+            className={cn(
+              "hidden md:flex items-center gap-3 transition-all duration-500 delay-100",
+              animationComplete ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4",
+            )}
           >
-            <img src="/abstract-team-logo.png" alt="Logo" className="logo-with-name-logo h-8 w-8 rounded-2xl" />
-            <div className="logo-with-name-name text-base font-medium tracking-tight text-white/95">WinMix</div>
-          </Link>
+            <div className="px-3 py-1.5 rounded-md bg-muted/50 hover:bg-muted/80 transition-colors duration-200 flex items-center gap-2">
+              <Trophy className="h-4 w-4 text-blue-400" />
+              <span className="text-xs font-medium text-white">{userStats.points} Points</span>
+            </div>
 
-          <ul className="header-nav hidden md:flex bg-white/5 backdrop-blur-md rounded-full px-2 py-1 border border-white/10">
-            <li>
-              <Link
-                href="/"
-                aria-label="Mérkőzések"
-                className="header-nav-link px-4 py-2 text-sm font-medium text-white/70 hover:text-white/95 rounded-full transition-all duration-300 hover:bg-white/10"
-              >
-                Mérkőzések
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/stats"
-                aria-label="Statisztikák"
-                className="header-nav-link px-4 py-2 text-sm font-medium text-white/70 hover:text-white/95 rounded-full transition-all duration-300 hover:bg-white/10"
-              >
-                Statisztikák
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/results"
-                aria-label="Eredmények"
-                className="header-nav-link px-4 py-2 text-sm font-medium text-white/70 hover:text-white/95 rounded-full transition-all duration-300 hover:bg-white/10"
-              >
-                Eredmények
-              </Link>
-            </li>
-          </ul>
+            <div className="px-3 py-1.5 rounded-md bg-muted/50 hover:bg-muted/80 transition-colors duration-200">
+              <span className="text-xs font-medium text-white">{userStats.winRate}% Win Rate</span>
+            </div>
+          </div>
 
-          <div className="header-actions flex gap-3 items-center">
-            {onExtendedStats && (
-              <button
-                type="button"
-                onClick={onExtendedStats}
-                className="header-actions-login hidden sm:inline-flex items-center gap-2 text-sm bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2 text-white/90 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-              >
-                <i data-lucide="chart-line" style={{ width: "16px", height: "16px", strokeWidth: "1.5" }}></i>
-                Bővített stat.
-              </button>
+          <div
+            className={cn(
+              "flex items-center gap-2 transition-all duration-500 delay-200",
+              animationComplete ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4",
             )}
-            {onSearch && (
-              <button
-                type="button"
-                onClick={onSearch}
-                className="button button-primary header-actions-trial flex items-center gap-2 text-sm bg-gradient-to-r from-white/15 to-white/8 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-2 text-white/95 hover:from-white/20 hover:to-white/12 hover:border-white/30 transition-all duration-300 transform hover:scale-105"
-              >
-                <i data-lucide="search" style={{ width: "16px", height: "16px", strokeWidth: "1.5" }}></i>
-                <span>Keresés</span>
-                <div className="button-border"></div>
-              </button>
-            )}
+          >
+            <button className="relative p-2 rounded-full bg-muted/50 hover:bg-muted/80 transition-colors duration-200">
+              <Bell className="h-4 w-4 text-white" />
+              <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-blue-500"></span>
+            </button>
+
+            <button className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-muted/50 hover:bg-muted/80 transition-colors duration-200">
+              <div className="h-5 w-5 rounded-full bg-blue-600 flex items-center justify-center">
+                <User className="h-3 w-3 text-white" />
+              </div>
+              <span className="text-xs font-medium text-white">Profile</span>
+              <ChevronDown className="h-3 w-3 text-white opacity-60" />
+            </button>
           </div>
         </div>
       </div>
     </header>
   )
 }
+
+export default Header
