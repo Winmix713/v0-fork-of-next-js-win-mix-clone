@@ -18,7 +18,7 @@ export function GlassmorphicButton({
     <button
       className={cn(
         // Base glassmorphic styling from the provided CSS
-        "relative inline-flex items-center justify-center gap-2 opacity-100 bg-[rgba(0,0,0,1)]",
+        "relative inline-flex items-center justify-center gap-2",
         "w-[130px] h-[40px] rounded-full",
         "font-medium text-white text-sm",
         // Complex glassmorphic background and shadows
