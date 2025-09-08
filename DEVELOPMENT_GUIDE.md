@@ -1,4 +1,3 @@
-
 # WinMix – Átfogó Fejlesztési Útmutató
 
 ## 1. Áttekintés
@@ -46,7 +45,7 @@ A piaci igény egyértelmű: a futballstatisztikák iránti kereslet exponenciá
 
 #### 1. Database Indexelés és Partícionálás
 
-```sql
+\`\`\`sql
 -- Optimalizált indexek a gyakori lekérdezésekhez
 CREATE INDEX CONCURRENTLY idx_matches_date_result 
 ON matches (match_date DESC, result) 
@@ -55,11 +54,11 @@ WHERE match_date >= CURRENT_DATE - INTERVAL '2 years';
 -- Partícionálás dátum szerint
 CREATE TABLE matches_2024 PARTITION OF matches 
 FOR VALUES FROM ('2024-01-01') TO ('2025-01-01');
-```
+\`\`\`
 
 #### 2. React Performance Optimalizáció
 
-```typescript
+\`\`\`typescript
 // React.memo + useMemo pattern a nagy adathalmazokhoz
 import { memo, useMemo } from 'react'
 import { FixedSizeList as List } from 'react-window'
@@ -88,11 +87,11 @@ export const VirtualizedMatchList = memo(({ matches, filters }) => {
     </List>
   )
 })
-```
+\`\`\`
 
 #### 3. Debouncing és Request Optimization
 
-```typescript
+\`\`\`typescript
 // Custom hook debounce implementáció
 export const useDebounce = <T>(value: T, delay: number): T => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value)
@@ -110,7 +109,7 @@ export const useDebounce = <T>(value: T, delay: number): T => {
 
 // Használat search komponensben
 const searchTerm = useDebounce(inputValue, 300)
-```
+\`\`\`
 
 ### KPI Mérési Módszertan
 
@@ -130,7 +129,7 @@ const searchTerm = useDebounce(inputValue, 300)
 
 #### 1. Accessibility (a11y) Implementáció
 
-```typescript
+\`\`\`typescript
 // Screen reader támogatás és keyboard navigation
 export const AccessibleFilterDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -171,11 +170,11 @@ export const AccessibleFilterDropdown = () => {
     </div>
   )
 }
-```
+\`\`\`
 
 #### 2. Onboarding Flow (React Joyride)
 
-```typescript
+\`\`\`typescript
 // Interaktív tutorial implementáció
 import Joyride from 'react-joyride'
 
@@ -209,7 +208,7 @@ export const OnboardingTour = () => {
     />
   )
 }
-```
+\`\`\`
 
 ### Tesztelési Stratégiák
 
@@ -238,7 +237,7 @@ $$x = \sum_{i=1}^{n} w_i \cdot f_i$$
 
 #### Faktorok és Súlyozás
 
-```typescript
+\`\`\`typescript
 interface PredictionFactors {
   homeFormLast5: number      // w = 0.25
   awayFormLast5: number      // w = 0.25
@@ -258,11 +257,11 @@ const calculatePrediction = (factors: PredictionFactors): number => {
   
   return 1 / (1 + Math.exp(-weightedSum)) // Sigmoid
 }
-```
+\`\`\`
 
 ### Explainable AI Implementáció
 
-```typescript
+\`\`\`typescript
 // SHAP-szerű feature importance visualization
 interface FeatureImportance {
   feature: string
@@ -285,11 +284,11 @@ export const PredictionExplanation = ({ prediction, factors }) => {
     </div>
   )
 }
-```
+\`\`\`
 
 ### A/B Testing Framework
 
-```typescript
+\`\`\`typescript
 // Feature flags with React hook
 export const useFeatureFlag = (flagName: string) => {
   const [variant, setVariant] = useState<'control' | 'test'>('control')
@@ -311,11 +310,11 @@ const PredictionComponent = () => {
     <EnhancedPredictionUI /> : 
     <StandardPredictionUI />
 }
-```
+\`\`\`
 
 ### Real-time Data Stream
 
-```typescript
+\`\`\`typescript
 // WebSocket connection with reconnect logic
 class RealTimeDataService {
   private ws: WebSocket | null = null
@@ -350,13 +349,13 @@ class RealTimeDataService {
     eventBus.emit('live-update', data)
   }
 }
-```
+\`\`\`
 
 ## 6. Phase 4: Skálázhatóság & Biztonság (3–4 hónap)
 
 ### Mikroszolgáltatás Architektúra
 
-```yaml
+\`\`\`yaml
 # docker-compose.yml (production-ready setup)
 version: '3.8'
 services:
@@ -384,11 +383,11 @@ services:
     build: ./services/matches
     environment:
       - DATABASE_URL=${MATCHES_DB_URL}
-```
+\`\`\`
 
 ### Authentication & Authorization
 
-```typescript
+\`\`\`typescript
 // JWT + RBAC implementation
 interface UserRole {
   id: string
@@ -436,11 +435,11 @@ export const rateLimiter = (maxRequests: number, windowMs: number) => {
     next()
   }
 }
-```
+\`\`\`
 
 ### Monitoring & Observability
 
-```typescript
+\`\`\`typescript
 // OpenTelemetry instrumentáció
 import { NodeSDK } from '@opentelemetry/sdk-node'
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node'
@@ -467,11 +466,11 @@ export const recordMetric = (name: string, value: number, labels: Record<string,
   
   metric.inc(labels, value)
 }
-```
+\`\`\`
 
 ### CI/CD Pipeline
 
-```yaml
+\`\`\`yaml
 # .github/workflows/deploy.yml
 name: Deploy WinMix
 on:
@@ -521,13 +520,13 @@ jobs:
         run: |
           # Deploy to 100% of traffic after canary success
           kubectl patch deployment winmix-api -p '{"spec":{"replicas":10}}'
-```
+\`\`\`
 
 ## 7. Phase 5: PWA & Release (4–6 hónap)
 
 ### Progressive Web App Implementáció
 
-```typescript
+\`\`\`typescript
 // Service Worker stratégia
 const CACHE_NAME = 'winmix-v1.0.0'
 const STATIC_ASSETS = [
@@ -559,9 +558,9 @@ self.addEventListener('fetch', (event) => {
     )
   }
 })
-```
+\`\`\`
 
-```json
+\`\`\`json
 // manifest.json
 {
   "name": "WinMix - Futball Statisztikák",
@@ -586,11 +585,11 @@ self.addEventListener('fetch', (event) => {
     }
   ]
 }
-```
+\`\`\`
 
 ### Natív Wrapper (Capacitor)
 
-```typescript
+\`\`\`typescript
 // capacitor.config.ts
 import { CapacitorConfig } from '@capacitor/cli'
 
@@ -612,11 +611,11 @@ const config: CapacitorConfig = {
 }
 
 export default config
-```
+\`\`\`
 
 ### Push Notifikációk
 
-```typescript
+\`\`\`typescript
 // Push notification service
 export class NotificationService {
   private swRegistration: ServiceWorkerRegistration | null = null
@@ -655,7 +654,7 @@ export class NotificationService {
     }))
   }
 }
-```
+\`\`\`
 
 ## 8. Roadmap & Prioritások
 
