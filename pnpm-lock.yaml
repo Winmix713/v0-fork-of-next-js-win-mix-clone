@@ -1810,13 +1810,8 @@ packages:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
 
-<<<<<<< HEAD
   ansi-regex@6.2.2:
     resolution: {integrity: sha512-Bq3SmSpyFHaWjPk8If9yc6svM8c56dB5BAtW4Qbw5jHTwwXXcTLoRMkpDJp6VL0XzlWaCHTXrkFURMYmD0sLqg==}
-=======
-  ansi-regex@6.2.0:
-    resolution: {integrity: sha512-TKY5pyBkHyADOPYlRT9Lx6F544mPl0vS5Ew7BJ45hA08Q+t3GjbueLliBWN3sMICk6+y7HdyxSzC4bWS8baBdg==}
->>>>>>> origin/winmix-dev-proposals-performance-ux
     engines: {node: '>=12'}
 
   ansi-styles@4.3.0:
@@ -1827,13 +1822,8 @@ packages:
     resolution: {integrity: sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==}
     engines: {node: '>=10'}
 
-<<<<<<< HEAD
   ansi-styles@6.2.3:
     resolution: {integrity: sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==}
-=======
-  ansi-styles@6.2.1:
-    resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==}
->>>>>>> origin/winmix-dev-proposals-performance-ux
     engines: {node: '>=12'}
 
   anymatch@3.1.3:
@@ -3157,13 +3147,8 @@ packages:
     resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
     engines: {node: '>=8'}
 
-<<<<<<< HEAD
   strip-ansi@7.1.2:
     resolution: {integrity: sha512-gmBGslpoQJtgnMAvOVqGZpEz9dyoKTCzy2nfz/n8aIFhN/jCE/rCmcxabB6jOOHV+0WNnylOxaxBQPSvcWklhA==}
-=======
-  strip-ansi@7.1.0:
-    resolution: {integrity: sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==}
->>>>>>> origin/winmix-dev-proposals-performance-ux
     engines: {node: '>=12'}
 
   strip-bom@4.0.0:
@@ -3323,15 +3308,6 @@ packages:
   v8-to-istanbul@9.3.0:
     resolution: {integrity: sha512-kiGUalWN+rgBJ/1OHZsBtU4rXZOfj/7rKQxULKlIzwzQSvMJUUNgPwJEEh7gU6xEVxC0ahoOBvN2YI8GH6FNgA==}
     engines: {node: '>=10.12.0'}
-<<<<<<< HEAD
-=======
-
-  vaul@0.9.9:
-    resolution: {integrity: sha512-7afKg48srluhZwIkaU+lgGtFCUsYBSGOl8vcc8N/M3YQlZFlynHD15AE+pwrYdc826o7nrIND4lL9Y6b9WWZZQ==}
-    peerDependencies:
-      react: ^16.8 || ^17.0 || ^18.0
-      react-dom: ^16.8 || ^17.0 || ^18.0
->>>>>>> origin/winmix-dev-proposals-performance-ux
 
   victory-vendor@36.9.2:
     resolution: {integrity: sha512-PnpQQMuxlwYdocC8fIJqVXvkeViHYzotI+NJrCuav0ZYFoq912ZHBk3mCeuj+5/VpodOjPe1z0Fk2ihgzlXqjQ==}
@@ -3796,11 +3772,7 @@ snapshots:
     dependencies:
       string-width: 5.1.2
       string-width-cjs: string-width@4.2.3
-<<<<<<< HEAD
       strip-ansi: 7.1.2
-=======
-      strip-ansi: 7.1.0
->>>>>>> origin/winmix-dev-proposals-performance-ux
       strip-ansi-cjs: strip-ansi@6.0.1
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
@@ -5142,11 +5114,7 @@ snapshots:
 
   ansi-regex@5.0.1: {}
 
-<<<<<<< HEAD
   ansi-regex@6.2.2: {}
-=======
-  ansi-regex@6.2.0: {}
->>>>>>> origin/winmix-dev-proposals-performance-ux
 
   ansi-styles@4.3.0:
     dependencies:
@@ -5154,11 +5122,7 @@ snapshots:
 
   ansi-styles@5.2.0: {}
 
-<<<<<<< HEAD
   ansi-styles@6.2.3: {}
-=======
-  ansi-styles@6.2.1: {}
->>>>>>> origin/winmix-dev-proposals-performance-ux
 
   anymatch@3.1.3:
     dependencies:
@@ -6626,25 +6590,15 @@ snapshots:
     dependencies:
       eastasianwidth: 0.2.0
       emoji-regex: 9.2.2
-<<<<<<< HEAD
       strip-ansi: 7.1.2
-=======
-      strip-ansi: 7.1.0
->>>>>>> origin/winmix-dev-proposals-performance-ux
 
   strip-ansi@6.0.1:
     dependencies:
       ansi-regex: 5.0.1
 
-<<<<<<< HEAD
   strip-ansi@7.1.2:
     dependencies:
       ansi-regex: 6.2.2
-=======
-  strip-ansi@7.1.0:
-    dependencies:
-      ansi-regex: 6.2.0
->>>>>>> origin/winmix-dev-proposals-performance-ux
 
   strip-bom@4.0.0: {}
 
@@ -6790,15 +6744,6 @@ snapshots:
       react: 19.0.0
 
   v8-to-istanbul@9.3.0:
-<<<<<<< HEAD
-=======
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.30
-      '@types/istanbul-lib-coverage': 2.0.6
-      convert-source-map: 2.0.0
-
-  vaul@0.9.9(@types/react-dom@19.0.0)(@types/react@19.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
->>>>>>> origin/winmix-dev-proposals-performance-ux
     dependencies:
       '@jridgewell/trace-mapping': 0.3.30
       '@types/istanbul-lib-coverage': 2.0.6
@@ -6861,15 +6806,9 @@ snapshots:
 
   wrap-ansi@8.1.0:
     dependencies:
-<<<<<<< HEAD
       ansi-styles: 6.2.3
       string-width: 5.1.2
       strip-ansi: 7.1.2
-=======
-      ansi-styles: 6.2.1
-      string-width: 5.1.2
-      strip-ansi: 7.1.0
->>>>>>> origin/winmix-dev-proposals-performance-ux
 
   wrappy@1.0.2: {}
 
