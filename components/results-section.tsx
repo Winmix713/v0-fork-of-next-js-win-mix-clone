@@ -19,9 +19,11 @@ interface Match {
   season: string
 }
 
+type SortableKey = "home" | "away" | "ht" | "ft" | "btts" | "comeback" | "result"
+type SortDirection = "asc" | "desc" | ""
 interface SortConfig {
-  key: string
-  direction: "asc" | "desc" | ""
+  key: SortableKey | ""
+  direction: SortDirection
 }
 
 interface ResultsSectionProps {
@@ -56,11 +58,11 @@ export function ResultsSection({
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = Math.min(startIndex + itemsPerPage, totalCount)
-  const displayedMatches = matches.slice(0, itemsPerPage) // Show current page matches
+  const displayedMatches = matches.slice(startIndex, endIndex)
   const totalPages = Math.ceil(totalCount / itemsPerPage)
   const showPagination = totalCount > 0
 
-  const handleSort = (key: string) => {
+  const handleSort = (key: SortableKey) => {
     let direction: "asc" | "desc" = "asc"
     if (sortConfig.key === key && sortConfig.direction === "asc") {
       direction = "desc"
@@ -91,7 +93,7 @@ export function ResultsSection({
     setIsSelectionMode(false)
   }
 
-  const getSortIcon = (key: string) => {
+  const getSortIcon = (key: SortableKey) => {
     if (sortConfig.key !== key) return "chevrons-up-down"
     return sortConfig.direction === "asc" ? "chevron-up" : "chevron-down"
   }

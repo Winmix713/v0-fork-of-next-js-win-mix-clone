@@ -1,19 +1,14 @@
 "use client"
 
 import { useEffect } from "react"
+import type { WinMixFilters } from "@/stores/winmix-store"
 import { FilterDropdown } from "./filter-dropdown"
 import { SearchInput } from "./search-input"
 import { useToast } from "./toast-container"
 
 interface FilterSectionProps {
-  filters: {
-    homeTeam: string
-    awayTeam: string
-    btts: string
-    comeback: string
-    searchTerm: string
-  }
-  onFiltersChange: (filters: FilterSectionProps["filters"]) => void
+  filters: WinMixFilters
+  onFiltersChange: (value: WinMixFilters | ((prev: WinMixFilters) => WinMixFilters)) => void
   onApply: () => void
   onReset: () => void
   onExport: () => void
@@ -38,8 +33,8 @@ export function FilterSection({
     }
   }, [])
 
-  const updateFilter = (key: string, value: string | number) => {
-    onFiltersChange({ ...filters, [key]: value })
+  const updateFilter = <K extends keyof WinMixFilters>(key: K, value: WinMixFilters[K]) => {
+    onFiltersChange((prev) => ({ ...prev, [key]: value }))
   }
 
   const handleApply = () => {
@@ -137,8 +132,8 @@ export function FilterSection({
             icon="home"
             iconBg="from-violet-500 to-indigo-600"
             options={homeTeamOptions}
-            value={filters.homeTeam}
-            onChange={(value) => updateFilter("homeTeam", value)}
+            value={filters.homeTeam ?? ""}
+            onChange={(value) => updateFilter("homeTeam", (value || undefined) as WinMixFilters["homeTeam"])}
           />
 
           <FilterDropdown
@@ -146,8 +141,8 @@ export function FilterSection({
             icon="flag"
             iconBg="from-fuchsia-500 to-violet-600"
             options={awayTeamOptions}
-            value={filters.awayTeam}
-            onChange={(value) => updateFilter("awayTeam", value)}
+            value={filters.awayTeam ?? ""}
+            onChange={(value) => updateFilter("awayTeam", (value || undefined) as WinMixFilters["awayTeam"])}
           />
 
           <FilterDropdown
@@ -155,8 +150,8 @@ export function FilterSection({
             icon="target"
             iconBg="bg-white/5 ring-1 ring-white/10"
             options={bttsOptions}
-            value={filters.btts}
-            onChange={(value) => updateFilter("btts", value)}
+            value={filters.btts ?? ""}
+            onChange={(value) => updateFilter("btts", value as WinMixFilters["btts"])}
           />
 
           <FilterDropdown
@@ -164,8 +159,8 @@ export function FilterSection({
             icon="shuffle"
             iconBg="bg-white/5 ring-1 ring-white/10"
             options={comebackOptions}
-            value={filters.comeback}
-            onChange={(value) => updateFilter("comeback", value)}
+            value={filters.comeback ?? ""}
+            onChange={(value) => updateFilter("comeback", value as WinMixFilters["comeback"])}
           />
         </div>
 

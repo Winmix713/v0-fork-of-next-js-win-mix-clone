@@ -1,17 +1,13 @@
 "use client"
 
 import { useEffect } from "react"
+import type { WinMixFilters } from "@/stores/winmix-store"
 
 interface ExtendedStatsModalProps {
   isOpen: boolean
   onClose: () => void
   matches: any[]
-  filters: {
-    homeTeam: string
-    awayTeam: string
-    btts: string
-    comeback: string
-  }
+  filters: WinMixFilters
 }
 
 export function ExtendedStatsModal({ isOpen, onClose, matches, filters }: ExtendedStatsModalProps) {

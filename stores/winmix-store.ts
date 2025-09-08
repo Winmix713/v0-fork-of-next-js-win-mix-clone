@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useState } from "react"
-import { createBrowserClient } from "@supabase/ssr"
+import { createClient as createSupabaseBrowserClient } from "@/lib/supabase/client"
 
 export interface StoreMatch {
   id: number
@@ -80,10 +80,7 @@ export function useWinMixStore() {
     setError(null)
 
     try {
-      const supabase = createBrowserClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      )
+      const supabase = createSupabaseBrowserClient()
 
       const { data, error } = await supabase
         .from("matches")
@@ -105,7 +102,13 @@ export function useWinMixStore() {
 
       if (error) throw error
 
-      const transformed = (data as SupabaseMatchRow[]).map(transformMatch)
+      if (!data) {
+        setMatches([])
+        return
+      }
+
+      const rows = data as unknown as SupabaseMatchRow[]
+      const transformed = rows.map(transformMatch)
       setMatches(transformed)
     } catch (e: any) {
       setError(e?.message ?? "Unknown error")

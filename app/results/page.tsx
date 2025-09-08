@@ -1,9 +1,11 @@
 "use client"
+export const dynamic = "force-dynamic"
 
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { createBrowserClient } from "@supabase/ssr"
+import type { WinMixFilters } from "@/stores/winmix-store"
+import { createClient as createSupabaseBrowserClient } from "@/lib/supabase/client"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FilterSection } from "@/components/filter-section"
@@ -39,7 +41,7 @@ export default function ResultsPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 100
 
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<WinMixFilters>({
     homeTeam: "",
     awayTeam: "",
     btts: "",
@@ -47,10 +49,8 @@ export default function ResultsPage() {
     searchTerm: "",
   })
 
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  )
+  // Create client lazily to avoid SSR env errors during prerender
+  const getSupabase = () => createSupabaseBrowserClient()
 
   const transformSupabaseMatch = (match: any): Match => ({
     ...match,
@@ -78,7 +78,7 @@ export default function ResultsPage() {
 
   const fetchMatches = async () => {
     try {
-      const { data, error } = await supabase.from("matches").select("*").order("id", { ascending: false })
+      const { data, error } = await getSupabase().from("matches").select("*").order("id", { ascending: false })
 
       if (error) throw error
 
@@ -129,7 +129,7 @@ export default function ResultsPage() {
     setCurrentPage(1)
   }
 
-  const handleFiltersChange = (newFilters: typeof filters) => {
+  const handleFiltersChange = (newFilters: WinMixFilters) => {
     setFilters(newFilters)
   }
 
@@ -148,7 +148,35 @@ export default function ResultsPage() {
   }
 
   const handleExport = () => {
-    exportToCSV(filteredMatches, "winmix-results")
+    const columns: { key: keyof Match; label: string; formatter?: (value: any) => string }[] = [
+      { key: "match_time", label: "Time" },
+      { key: "home_team", label: "Home Team" },
+      { key: "away_team", label: "Away Team" },
+      {
+        key: "half_time_home_goals",
+        label: "HT Home",
+        formatter: (v) => String(v ?? ""),
+      },
+      {
+        key: "half_time_away_goals",
+        label: "HT Away",
+        formatter: (v) => String(v ?? ""),
+      },
+      {
+        key: "full_time_home_goals",
+        label: "FT Home",
+        formatter: (v) => String(v ?? ""),
+      },
+      {
+        key: "full_time_away_goals",
+        label: "FT Away",
+        formatter: (v) => String(v ?? ""),
+      },
+      { key: "btts", label: "BTTS", formatter: (v) => (v ? "Yes" : "No") },
+      { key: "comeback", label: "Comeback", formatter: (v) => (v ? "Yes" : "No") },
+      { key: "result", label: "Result" },
+    ]
+    exportToCSV(filteredMatches, columns, { filename: "winmix-results" })
   }
 
   const handleCSVUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -179,7 +207,7 @@ export default function ResultsPage() {
         })
         .filter((match) => match.home_team && match.away_team)
 
-      const { error } = await supabase.from("matches").insert(matches)
+      const { error } = await getSupabase().from("matches").insert(matches)
 
       if (error) throw error
 
@@ -275,7 +303,7 @@ export default function ResultsPage() {
 
           <FilterSection
             filters={filters}
-            onFiltersChange={handleFiltersChange}
+            onFiltersChange={setFilters}
             onApply={handleApply}
             onReset={handleReset}
             onExport={handleExport}

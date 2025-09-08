@@ -17,10 +17,7 @@ export function GlobalScriptLoader() {
           console.log("[v0] Chart.js loaded successfully")
         }
 
-        // Log Supabase availability
-        if (window.supabase) {
-          console.log("[v0] Supabase client loaded successfully")
-        }
+        // Avoid referencing non-declared globals like window.supabase
       }
     }
 
