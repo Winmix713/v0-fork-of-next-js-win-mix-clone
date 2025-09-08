@@ -16,11 +16,7 @@ interface StatsSectionProps {
   onExtendedStats: () => void
 }
 
-declare global {
-  interface Window {
-    lucide: any
-  }
-}
+// Window typings for lucide are declared in types/global.d.ts
 
 export function StatsSection({ stats, matches, onExtendedStats }: StatsSectionProps) {
   useEffect(() => {

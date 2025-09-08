@@ -47,8 +47,10 @@ interface Stats {
   bttsReliability?: "high" | "medium" | "low"
 }
 
+type SortableKey = "home" | "away" | "ht" | "ft" | "btts" | "comeback" | "result"
+
 interface SortConfig {
-  key: string
+  key: SortableKey | ""
   direction: "asc" | "desc" | ""
 }
 
@@ -126,18 +128,22 @@ export default function HomePage() {
       switch (config.key) {
         case "home":
         case "away":
-          result = a[config.key as keyof Match].toString().localeCompare(b[config.key as keyof Match].toString(), "hu")
+          {
+            const aValue = (a[config.key] as string) ?? ""
+            const bValue = (b[config.key] as string) ?? ""
+            result = aValue.localeCompare(bValue, "hu")
+          }
           break
         case "ht":
         case "ft":
-          const [aHome, aAway] = a[config.key].split("-").map(Number)
-          const [bHome, bAway] = b[config.key].split("-").map(Number)
+          const [aHome, aAway] = (a[config.key] as string).split("-").map(Number)
+          const [bHome, bAway] = (b[config.key] as string).split("-").map(Number)
           result = aHome + aAway - (bHome + bAway)
           if (result === 0) result = aHome - bHome
           break
         case "btts":
         case "comeback":
-          result = (a[config.key] === "yes" ? 1 : 0) - (b[config.key] === "yes" ? 1 : 0)
+          result = ((a[config.key] as string) === "yes" ? 1 : 0) - ((b[config.key] as string) === "yes" ? 1 : 0)
           break
         case "result":
           const resultOrder = { H: 0, D: 1, A: 2 }

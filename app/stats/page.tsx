@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { createBrowserClient } from "@supabase/ssr"
+import { createClient as createSupabaseBrowserClient } from "@/lib/supabase/client"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -26,15 +26,14 @@ interface TeamStats {
   comeback_total: number
 }
 
+export const dynamic = "force-dynamic"
+
 export default function StatsPage() {
   const [teamStats, setTeamStats] = useState<TeamStats[]>([])
   const [loading, setLoading] = useState(true)
   const [totalMatches, setTotalMatches] = useState(0)
 
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  )
+  const getSupabase = () => createSupabaseBrowserClient()
 
   useEffect(() => {
     fetchStats()
@@ -42,7 +41,7 @@ export default function StatsPage() {
 
   const fetchStats = async () => {
     try {
-      const { data: matches, error } = await supabase.from("matches").select("*")
+      const { data: matches, error } = await getSupabase().from("matches").select("*")
 
       if (error) throw error
 
