@@ -1,74 +1,102 @@
 "use client"
 
-import { useEffect } from "react"
-import Link from "next/link"
+import { useEffect, useState } from "react"
+import { Trophy, Bell, User, ChevronDown } from "lucide-react"
+import { cn } from "@/lib/utils"
 
-interface HeaderProps {
-  onSearch?: () => void
-  onExtendedStats?: () => void
-}
+const Header = () => {
+  const userStats = {
+    points: 1250,
+    winRate: 73,
+  }
 
-export function Header({ onSearch, onExtendedStats }: HeaderProps) {
+  const [scrolled, setScrolled] = useState(false)
+  const [animationComplete, setAnimationComplete] = useState(false)
+
   useEffect(() => {
-    if (typeof window !== "undefined" && window.lucide) {
-      window.lucide.createIcons()
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled)
+      }
     }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [scrolled])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationComplete(true)
+    }, 1000)
+
+    return () => clearTimeout(timer)
   }, [])
 
   return (
-    <header className="relative z-50 sticky top-0 backdrop-blur-xl bg-[#0a0a12]/80 border-b border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 shadow-[0_0_0_2px_rgba(255,255,255,0.06)_inset]">
-              <i
-                data-lucide="asterisk"
-                className="text-white"
-                style={{ width: "16px", height: "16px", strokeWidth: "1.5" }}
-              ></i>
-            </span>
-            <span className="text-lg font-semibold tracking-tight">WinMix</span>
-          </Link>
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b backdrop-blur-lg",
+        scrolled ? "bg-background/70 border-white/10 py-3" : "bg-transparent border-transparent py-5",
+      )}
+    >
+      <div className="container mx-auto px-4 flex items-center justify-between">
+        <div
+          className={cn(
+            "flex items-center transition-all duration-500",
+            animationComplete ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4",
+          )}
+        >
+          <div className="mr-2 h-8 w-8 overflow-hidden rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 p-0.5">
+            <div className="h-full w-full rounded-md bg-background flex items-center justify-center">
+              <Trophy className="h-4 w-4 text-blue-400" />
+            </div>
+          </div>
+          <h1 className="text-lg font-semibold tracking-tight text-white">
+            Win<span className="text-blue-400">Mix.hu</span>
+          </h1>
+        </div>
 
-          <nav className="hidden md:flex gap-1 border border-white/5 rounded-full px-3 items-center">
-            <Link href="/" className="px-3 py-2 text-sm font-medium text-zinc-300 hover:text-white">
-              Mérkőzések
-            </Link>
-            <Link href="/stats" className="px-3 py-2 text-sm font-medium text-zinc-300 hover:text-white">
-              Statisztikák
-            </Link>
-            <Link href="/results" className="px-3 py-2 text-sm font-medium text-zinc-300 hover:text-white">
-              Eredmények
-            </Link>
-          </nav>
+        <div className="flex items-center gap-4">
+          <div
+            className={cn(
+              "hidden md:flex items-center gap-3 transition-all duration-500 delay-100",
+              animationComplete ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4",
+            )}
+          >
+            <div className="px-3 py-1.5 rounded-md bg-slate-800/90 border border-slate-600/50 hover:bg-slate-700/90 transition-colors duration-200 flex items-center gap-2">
+              <Trophy className="h-4 w-4 text-blue-400" />
+              <span className="text-xs font-medium text-white">{userStats.points} Points</span>
+            </div>
 
-          <div className="flex gap-2 items-center">
-            {onExtendedStats && (
-              <button
-                type="button"
-                onClick={onExtendedStats}
-                className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-zinc-200 border border-white/10 rounded-md px-3 py-2 hover:bg-white/5"
-              >
-                <i data-lucide="chart-line" style={{ width: "18px", height: "18px", strokeWidth: "1.5" }}></i>
-                Bővített stat.
-              </button>
+            <div className="px-3 py-1.5 rounded-md bg-slate-800/90 border border-slate-600/50 hover:bg-slate-700/90 transition-colors duration-200">
+              <span className="text-xs font-medium text-white">{userStats.winRate}% Win Rate</span>
+            </div>
+          </div>
+
+          <div
+            className={cn(
+              "flex items-center gap-2 transition-all duration-500 delay-200",
+              animationComplete ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4",
             )}
-            {onSearch && (
-              <button
-                type="button"
-                onClick={onSearch}
-                className="group relative inline-flex transition duration-300 ease-out select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/50 text-white rounded-md p-[1px] items-center justify-center shadow-[0_8px_16px_-4px_rgba(151,65,252,0.2)] hover:shadow-[0_12px_24px_-6px_rgba(151,65,252,0.3)]"
-                style={{ backgroundImage: "linear-gradient(144deg,#AF40FF, #5B42F3 50%, #00DDEB)" }}
-              >
-                <span className="flex items-center justify-center gap-2 text-[14px] leading-none h-full w-full transition-colors duration-300 group-hover:bg-transparent font-medium bg-[#0b0f17] rounded-md px-4 py-2">
-                  <i data-lucide="search" style={{ width: "20px", height: "20px", strokeWidth: "1.5" }}></i>
-                  <span>Keresés</span>
-                </span>
-              </button>
-            )}
+          >
+            <button className="relative p-2 rounded-full bg-slate-800/90 border border-slate-600/50 hover:bg-slate-700/90 transition-colors duration-200">
+              <Bell className="h-4 w-4 text-white" />
+              <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-blue-500"></span>
+            </button>
+
+            <button className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-slate-800/90 border border-slate-600/50 hover:bg-slate-700/90 transition-colors duration-200">
+              <div className="h-5 w-5 rounded-full bg-blue-600 flex items-center justify-center">
+                <User className="h-3 w-3 text-white" />
+              </div>
+              <span className="text-xs font-medium text-white">Profile</span>
+              <ChevronDown className="h-3 w-3 text-white opacity-60" />
+            </button>
           </div>
         </div>
       </div>
     </header>
   )
 }
+
+export { Header }

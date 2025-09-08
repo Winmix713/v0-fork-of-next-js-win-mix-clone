@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from "lucide-react"
 
 export type ToastType = "success" | "error" | "info" | "warning"
@@ -75,30 +75,42 @@ export function ToastComponent({ toast, onRemove }: ToastProps) {
 export function useToast() {
   const [toasts, setToasts] = useState<Toast[]>([])
 
-  const addToast = (toast: Omit<Toast, "id">) => {
+  const addToast = useCallback((toast: Omit<Toast, "id">) => {
     const id = Math.random().toString(36).substr(2, 9)
     setToasts((prev) => [...prev, { ...toast, id }])
-  }
+  }, [])
 
-  const removeToast = (id: string) => {
+  const removeToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id))
-  }
+  }, [])
 
-  const showSuccess = (title: string, message?: string) => {
-    addToast({ type: "success", title, message })
-  }
+  const showSuccess = useCallback(
+    (title: string, message?: string) => {
+      addToast({ type: "success", title, message })
+    },
+    [addToast],
+  )
 
-  const showError = (title: string, message?: string) => {
-    addToast({ type: "error", title, message })
-  }
+  const showError = useCallback(
+    (title: string, message?: string) => {
+      addToast({ type: "error", title, message })
+    },
+    [addToast],
+  )
 
-  const showInfo = (title: string, message?: string) => {
-    addToast({ type: "info", title, message })
-  }
+  const showInfo = useCallback(
+    (title: string, message?: string) => {
+      addToast({ type: "info", title, message })
+    },
+    [addToast],
+  )
 
-  const showWarning = (title: string, message?: string) => {
-    addToast({ type: "warning", title, message })
-  }
+  const showWarning = useCallback(
+    (title: string, message?: string) => {
+      addToast({ type: "warning", title, message })
+    },
+    [addToast],
+  )
 
   return {
     toasts,

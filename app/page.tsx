@@ -156,6 +156,7 @@ export default function HomePage() {
 
   const filteredMatches = useMemo(() => {
     let filtered = [...matches]
+
     if (debouncedSearchTerm.trim()) {
       const searchLower = debouncedSearchTerm.toLowerCase().trim()
       filtered = filtered.filter(
@@ -166,11 +167,28 @@ export default function HomePage() {
           m.season.toLowerCase().includes(searchLower),
       )
     }
-    // Note: Other filters like homeTeam, awayTeam, btts, comeback will be applied here in the future
-    return sortMatches(filtered, sortConfig)
-  }, [matches, debouncedSearchTerm, sortConfig, sortMatches])
 
-  const stats: Stats = useMemo(() => {
+    if (filters.homeTeam) {
+      filtered = filtered.filter((m) => m.home === filters.homeTeam)
+    }
+    if (filters.awayTeam) {
+      filtered = filtered.filter((m) => m.away === filters.awayTeam)
+    }
+    if (filters.btts) {
+      filtered = filtered.filter((m) => m.btts === filters.btts)
+    }
+    if (filters.comeback) {
+      filtered = filtered.filter((m) => m.comeback === filters.comeback)
+    }
+
+    return sortMatches(filtered, sortConfig)
+  }, [matches, debouncedSearchTerm, filters.homeTeam, filters.awayTeam, filters.btts, filters.comeback, sortConfig, sortMatches])
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [debouncedSearchTerm, filters.homeTeam, filters.awayTeam, filters.btts, filters.comeback])
+
+   const stats: Stats = useMemo(() => {
     const matchData = filteredMatches
     const total = matchData.length
     if (total === 0)
@@ -259,7 +277,7 @@ export default function HomePage() {
 
       <main className="relative z-10">
         <section className="bg-black/20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 items-stretch bg-black">
             <div className="text-center space-y-3">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white text-balance">
                 Mérkőzés szűrő és statisztikák

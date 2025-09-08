@@ -82,7 +82,7 @@ export function BTTSHighlight({ stats }: BTTSHighlightProps) {
 
   return (
     <div className="mt-8 mb-6">
-      <div className="rounded-2xl ring-1 ring-indigo-400/30 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 p-6">
+      <div className="rounded-2xl ring-1 ring-indigo-400/30 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 p-6 bg-black">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 ring-1 ring-white/20">
