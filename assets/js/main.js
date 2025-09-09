@@ -1,3 +1,22 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const actionButton = document.getElementById('actionButton');
+  if (!actionButton) {
+    return;
+  }
+
+  actionButton.addEventListener('click', () => {
+    const originalText = actionButton.textContent || 'Kattints rám';
+    actionButton.disabled = true;
+    actionButton.textContent = '🎉 Kész!';
+    actionButton.style.filter = 'saturate(1.2)';
+    setTimeout(() => {
+      actionButton.disabled = false;
+      actionButton.textContent = originalText;
+      actionButton.style.filter = '';
+    }, 1200);
+  });
+});
+
 document.addEventListener('DOMContentLoaded', function () {
   const navToggleButton = document.querySelector('[data-nav-toggle]');
   const nav = document.querySelector('[data-nav]');
