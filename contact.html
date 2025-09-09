@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kapcsolat – Márkanév</title>
+  <meta name="description" content="Vedd fel velünk a kapcsolatot! Küldj üzenetet az űrlapon keresztül." />
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <meta property="og:title" content="Kapcsolat – Márkanév" />
+  <meta property="og:description" content="Vedd fel velünk a kapcsolatot! Küldj üzenetet az űrlapon keresztül." />
+  <meta property="og:image" content="/assets/img/og-image.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="hu_HU" />
+</head>
+<body>
+  <header class="header">
+    <div class="container navbar">
+      <a href="/" class="brand" aria-label="Márkanév kezdőlap">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Márkanév</span>
+      </a>
+      <nav class="nav" data-nav>
+        <a href="/about.html">Rólunk</a>
+        <a href="/services.html">Szolgáltatások</a>
+        <a href="/contact.html" aria-current="page">Kapcsolat</a>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-controls="primary-navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1>Kapcsolat</h1>
+        <p class="lead">Írj nekünk, 1 munkanapon belül válaszolunk.</p>
+        <form data-contact-form class="grid-2">
+          <div>
+            <label for="name">Név</label>
+            <input class="input" type="text" id="name" name="name" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input class="input" type="email" id="email" name="email" required />
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label for="message">Üzenet</label>
+            <textarea class="textarea" id="message" name="message" required></textarea>
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <button class="button" type="submit">Küldés</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>© <span id="year"></span> Márkanév. Minden jog fenntartva.</div>
+      <div><a href="/contact.html">Lépj kapcsolatba</a></div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

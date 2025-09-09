@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Márkanév – Modern webes megoldások</title>
+  <meta name="description" content="Modern, gyors és reszponzív weboldalak teljes kivitelezése React nélkül, tiszta HTML+CSS+JS alapon." />
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/assets/css/styles.css" as="style" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <meta property="og:title" content="Márkanév – Modern webes megoldások" />
+  <meta property="og:description" content="Modern, gyors és reszponzív weboldalak teljes kivitelezése React nélkül, tiszta HTML+CSS+JS alapon." />
+  <meta property="og:image" content="/assets/img/og-image.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="hu_HU" />
+</head>
+<body>
+  <header class="header">
+    <div class="container navbar">
+      <a href="/" class="brand" aria-label="Márkanév kezdőlap">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Márkanév</span>
+      </a>
+      <nav class="nav" data-nav>
+        <a href="/about.html">Rólunk</a>
+        <a href="/services.html">Szolgáltatások</a>
+        <a href="/contact.html">Kapcsolat</a>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-controls="primary-navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="badge"><span class="icon"></span> React nélkül, tiszta HTML</span>
+          <h1>Modern, gyors és elegáns weboldal</h1>
+          <p>Teljeskörű kivitelezés: tervezés, fejlesztés, SEO és üzemeltetés — minden egy helyen.</p>
+          <div class="cta">
+            <a class="button" href="/contact.html">Kérj ajánlatot</a>
+            <a class="button secondary" href="/services.html">Szolgáltatások</a>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <h3>Miért minket válassz?</h3>
+            <p>Gyors betöltés, kiváló Lighthouse pontszámok, hozzáférhetőség és reszponzív design.</p>
+          </div>
+          <div class="card-grid">
+            <div class="card"><h3>Reszponzív</h3><p>Minden eszközön jól mutat.</p></div>
+            <div class="card"><h3>SEO-barát</h3><p>Tiszta HTML szerkezet és meta címkék.</p></div>
+            <div class="card"><h3>Karcsú</h3><p>Nincs fölösleges framework terhelés.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Fő szolgáltatások</h2>
+        <p class="lead">Webfejlesztés, UI/UX, sebességoptimalizálás és tartalomkezelés.</p>
+        <div class="features">
+          <div class="feature"><h3>Webfejlesztés</h3><p>Statikus és dinamikus oldalak.</p></div>
+          <div class="feature"><h3>UI/UX</h3><p>Felhasználóközpontú tervezés.</p></div>
+          <div class="feature"><h3>Teljesítmény</h3><p>Gyors betöltési idők.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>© <span id="year"></span> Márkanév. Minden jog fenntartva.</div>
+      <div><a href="/contact.html">Lépj kapcsolatba</a></div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

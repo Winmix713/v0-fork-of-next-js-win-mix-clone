@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rólunk – Márkanév</title>
+  <meta name="description" content="Ismerd meg csapatunkat és értékeinket. Minőségi, gyors és elérhető webes megoldások." />
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <meta property="og:title" content="Rólunk – Márkanév" />
+  <meta property="og:description" content="Ismerd meg csapatunkat és értékeinket. Minőségi, gyors és elérhető webes megoldások." />
+  <meta property="og:image" content="/assets/img/og-image.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="hu_HU" />
+</head>
+<body>
+  <header class="header">
+    <div class="container navbar">
+      <a href="/" class="brand" aria-label="Márkanév kezdőlap">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Márkanév</span>
+      </a>
+      <nav class="nav" data-nav>
+        <a href="/about.html" aria-current="page">Rólunk</a>
+        <a href="/services.html">Szolgáltatások</a>
+        <a href="/contact.html">Kapcsolat</a>
+      </nav>
+      <button class="nav-toggle" data-nav-toggle aria-controls="primary-navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1>Rólunk</h1>
+        <p class="lead">Kis csapat, nagy fókusz: gyors, hozzáférhető és szép weboldalak.</p>
+        <div class="card-grid">
+          <div class="card"><h3>Küldetés</h3><p>Üzleti célokat szolgáló digitális élmények.</p></div>
+          <div class="card"><h3>Értékek</h3><p>Átláthatóság, minőség, hatékonyság.</p></div>
+          <div class="card"><h3>Módszertan</h3><p>Iteratív fejlesztés, rövid visszacsatolási körök.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div>© <span id="year"></span> Márkanév. Minden jog fenntartva.</div>
+      <div><a href="/contact.html">Lépj kapcsolatba</a></div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
