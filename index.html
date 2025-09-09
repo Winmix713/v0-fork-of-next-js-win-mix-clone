@@ -1,50 +1,222 @@
 <!doctype html>
 <html lang="hu">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alap oldal</title>
-  <meta name="description" content="Egyszerű kezdőoldal sablon.">
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Alap oldal">
-  <meta property="og:description" content="Egyszerű kezdőoldal sablon.">
-  <meta property="og:image" content="assets/img/og-image.svg">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Alap oldal">
-  <meta name="twitter:description" content="Egyszerű kezdőoldal sablon.">
-  <meta name="twitter:image" content="assets/img/og-image.svg">
-
-  <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
-  <main class="container">
-    <h1>Üdv!</h1>
-    <p>Minden készen áll. Szerkeszd bátran ezt a sablont.</p>
-    <button id="actionButton" class="btn">Kattints rám</button>
-  </main>
-
-  <script src="assets/js/main.js" defer></script>
-</body>
-</html>
-
-<!doctype html>
-<html lang="hu">
-<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Márkanév – Modern webes megoldások</title>
   <meta name="description" content="Modern, gyors és reszponzív weboldalak teljes kivitelezése React nélkül, tiszta HTML+CSS+JS alapon." />
-  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
-  <link rel="preload" href="/assets/css/styles.css" as="style" />
-  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%233b82f6"/><stop offset="100%" stop-color="%231d4ed8"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(%23g)"/><circle cx="32" cy="32" r="10" fill="%2322d3ee" opacity="0.9"/></svg>' />
   <meta property="og:title" content="Márkanév – Modern webes megoldások" />
   <meta property="og:description" content="Modern, gyors és reszponzív weboldalak teljes kivitelezése React nélkül, tiszta HTML+CSS+JS alapon." />
-  <meta property="og:image" content="/assets/img/og-image.svg" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="hu_HU" />
+  <meta property="og:image" content='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%230b1220"/><stop offset="100%" stop-color="%231e3a8a"/></linearGradient><linearGradient id="logo" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%233b82f6"/><stop offset="100%" stop-color="%2322d3ee"/></linearGradient></defs><rect width="1200" height="630" fill="url(%23bg)"/><g transform="translate(140,180)"><rect x="0" y="0" width="120" height="120" rx="24" fill="url(%23logo)"/><circle cx="60" cy="60" r="24" fill="%23ffffff" opacity="0.9"/><text x="160" y="60" fill="%23e2e8f0" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" dominant-baseline="middle">Márkanév</text><text x="160" y="110" fill="%2394a3b8" font-family="Arial, Helvetica, sans-serif" font-size="28">Modern webes megoldások</text></g></svg>' />
+  <style>
+:root {
+  --brand-50: #eef6ff;
+  --brand-100: #dbeafe;
+  --brand-200: #bfdbfe;
+  --brand-300: #93c5fd;
+  --brand-400: #60a5fa;
+  --brand-500: #3b82f6;
+  --brand-600: #2563eb;
+  --brand-700: #1d4ed8;
+  --brand-800: #1e40af;
+  --brand-900: #1e3a8a;
+
+  --bg: #0b1220;
+  --surface: #0f172a;
+  --muted: #94a3b8;
+  --text: #e2e8f0;
+  --accent: var(--brand-500);
+  --accent-2: #22d3ee;
+  --ring: rgba(59,130,246,0.5);
+  --radius: 12px;
+  --shadow-lg: 0 20px 40px rgba(2, 6, 23, 0.5);
+  --shadow-md: 0 10px 20px rgba(2, 6, 23, 0.4);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  background: radial-gradient(1200px 800px at 20% -10%, rgba(59,130,246,0.15), transparent),
+              radial-gradient(1000px 700px at 80% 10%, rgba(34,211,238,0.15), transparent),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: saturate(1.2) blur(10px);
+  background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.65));
+  border-bottom: 1px solid rgba(148,163,184,0.1);
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.brand .logo {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), var(--shadow-md);
+}
+.nav {
+  display: flex;
+  gap: 20px;
+}
+.nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+.nav a:hover, .nav a:focus {
+  background: rgba(148,163,184,0.08);
+  border-color: rgba(148,163,184,0.15);
+}
+
+.nav-toggle {
+  display: none;
+  width: 38px; height: 34px;
+  align-items: center; justify-content: center;
+  border-radius: 8px; border: 1px solid rgba(148,163,184,0.2);
+  background: rgba(255,255,255,0.02);
+  color: var(--text);
+}
+.nav-toggle span { display:block; width:18px; height:2px; background:var(--text); margin:3px 0; }
+
+.hero { padding: 72px 0 36px; }
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.1;
+  margin: 0 0 14px;
+}
+.hero p {
+  color: var(--muted);
+  font-size: clamp(16px, 2.2vw, 18px);
+}
+.cta {
+  display: flex; gap: 12px; margin-top: 22px;
+}
+.button {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(148,163,184,0.2);
+  color: white;
+  background: linear-gradient(180deg, var(--brand-500), var(--brand-600));
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  font-weight: 700;
+}
+.button.secondary { background: transparent; color: var(--text); }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 36px 0 22px;
+}
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(148,163,184,0.15);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow-md);
+}
+.card h3 { margin: 8px 0 8px; }
+.card p { color: var(--muted); margin: 0; }
+
+.section { padding: 48px 0; }
+.section h2 { margin: 0 0 16px; font-size: 28px; }
+.section p.lead { color: var(--muted); margin-top: 0; }
+
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.feature {
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(148,163,184,0.15);
+  background: rgba(255,255,255,0.02);
+}
+
+.footer {
+  margin-top: 40px;
+  border-top: 1px solid rgba(148,163,184,0.1);
+  padding: 24px 0 48px;
+  color: var(--muted);
+}
+.footer a { color: var(--muted); text-decoration: none; }
+.footer a:hover { color: var(--text); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.input, .textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(148,163,184,0.2);
+  background: rgba(255,255,255,0.02);
+  color: var(--text);
+  outline: none;
+}
+.input:focus, .textarea:focus { border-color: var(--ring); box-shadow: 0 0 0 3px var(--ring); }
+.textarea { min-height: 140px; resize: vertical; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 10px; border-radius: 999px;
+  background: rgba(59,130,246,0.12);
+  color: var(--brand-200);
+  border: 1px solid rgba(59,130,246,0.25);
+  font-weight: 700;
+}
+.icon {
+  width: 18px; height: 18px; border-radius: 5px;
+  background: linear-gradient(135deg, var(--brand-400), var(--brand-600));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .card-grid, .features { grid-template-columns: 1fr; }
+  .nav-toggle { display: inline-flex; }
+  .nav {
+    position: absolute; right: 4%; top: 58px; width: 92%;
+    display: none; flex-direction: column; gap: 10px;
+    padding: 10px; border-radius: 12px;
+    background: rgba(15,23,42,0.98);
+    border: 1px solid rgba(148,163,184,0.15);
+    box-shadow: var(--shadow-lg);
+  }
+  .nav[data-open="true"] { display: flex; }
+}
+  </style>
 </head>
 <body>
   <header class="header">
@@ -54,9 +226,9 @@
         <span>Márkanév</span>
       </a>
       <nav class="nav" data-nav>
-        <a href="/about.html">Rólunk</a>
-        <a href="/services.html">Szolgáltatások</a>
-        <a href="/contact.html">Kapcsolat</a>
+        <a href="#about">Rólunk</a>
+        <a href="#services">Szolgáltatások</a>
+        <a href="#contact">Kapcsolat</a>
       </nav>
       <button class="nav-toggle" data-nav-toggle aria-controls="primary-navigation" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -72,8 +244,8 @@
           <h1>Modern, gyors és elegáns weboldal</h1>
           <p>Teljeskörű kivitelezés: tervezés, fejlesztés, SEO és üzemeltetés — minden egy helyen.</p>
           <div class="cta">
-            <a class="button" href="/contact.html">Kérj ajánlatot</a>
-            <a class="button secondary" href="/services.html">Szolgáltatások</a>
+            <a class="button" href="#contact">Kérj ajánlatot</a>
+            <a class="button secondary" href="#services">Szolgáltatások</a>
           </div>
         </div>
         <div>
@@ -90,7 +262,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section id="services" class="section">
       <div class="container">
         <h2>Fő szolgáltatások</h2>
         <p class="lead">Webfejlesztés, UI/UX, sebességoptimalizálás és tartalomkezelés.</p>
@@ -101,16 +273,65 @@
         </div>
       </div>
     </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Kapcsolat</h2>
+        <p class="lead">Írj nekünk, és 1 munkanapon belül válaszolunk.</p>
+        <form data-contact-form class="grid-2">
+          <input class="input" type="text" name="name" placeholder="Név" aria-label="Név" required />
+          <input class="input" type="email" name="email" placeholder="Email" aria-label="Email" required />
+          <textarea class="textarea" name="message" placeholder="Üzenet" aria-label="Üzenet" required></textarea>
+          <div></div>
+          <button class="button" type="submit">Küldés</button>
+        </form>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     <div class="container">
       <div>© <span id="year"></span> Márkanév. Minden jog fenntartva.</div>
-      <div><a href="/contact.html">Lépj kapcsolatba</a></div>
+      <div><a href="#contact">Lépj kapcsolatba</a></div>
     </div>
   </footer>
 
-  <script src="/assets/js/main.js" defer></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+  (function () {
+    var navToggleButton = document.querySelector('[data-nav-toggle]');
+    var nav = document.querySelector('[data-nav]');
+    if (navToggleButton && nav) {
+      navToggleButton.addEventListener('click', function () {
+        var isOpen = nav.getAttribute('data-open') === 'true';
+        nav.setAttribute('data-open', String(!isOpen));
+        navToggleButton.setAttribute('aria-expanded', String(!isOpen));
+      });
+    }
+
+    var yearEl = document.getElementById('year');
+    if (yearEl) { yearEl.textContent = String(new Date().getFullYear()); }
+
+    var contactForm = document.querySelector('form[data-contact-form]');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var formData = new FormData(contactForm);
+        var name = String(formData.get('name') || '').trim();
+        var email = String(formData.get('email') || '').trim();
+        var message = String(formData.get('message') || '').trim();
+        if (!name || !email || !message) {
+          alert('Kérjük, tölts ki minden mezőt.');
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          alert('Kérjük, érvényes email címet adj meg.');
+          return;
+        }
+        alert('Köszönjük az üzenetet! Hamarosan jelentkezünk.');
+        contactForm.reset();
+      });
+    }
+  })();
+  </script>
 </body>
 </html>
